@@ -1,16 +1,32 @@
 # docker-scriptform
-https://github.com/fboender/scriptform containerized
 
-run the examples:
+[scriptform](https://github.com/fboender/scriptform) containerized
 
-    docker run -p 80:80 -it ctorff/scriptform /scriptform/examples/validate/validate.json
+## build
 
-or run your own scripts:
+As usual, e.g.:
 
-    docker run -v "$(pwd)/scripts:/scripts" -p 80:80 -it ctorff/scriptform /scripts/myscript.json
+    you=YOUR_USERNAME
+    docker build -t "${you}/scriptform" .
 
-The entrypoint is:
+## run
+
+Run an example (see [examples](https://github.com/fboender/scriptform/tree/master/examples) for more):
+
+    docker run -p 8080:80 -it "${you}/scriptform" /scriptform/examples/validate/validate.json
+
+now go to http://localhost:8080
+
+
+Or run your own scripts:
+
+    docker run -v "$(pwd)/scripts:/scripts" -p 80:80 -it "${you}/scriptform" /scripts/myscript.json
+
+
+The entrypoint:
 
     ENTRYPOINT ["/usr/bin/scriptform", "-f", "-p80"]
 
-See https://github.com/fboender/scriptform for documentation abount options, scripting etc.
+
+See https://github.com/fboender/scriptform for documentation about options, scripting etc.
+
